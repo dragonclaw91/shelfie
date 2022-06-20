@@ -20,6 +20,7 @@ app.use(sessionMiddleware);
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
+const bookRouter = require('./routes/bookrouter.js');
 
 /* Routes */
 app.use('/api/user', userRouter);
@@ -29,6 +30,9 @@ app.use(express.static('build'));
 
 // App Set //
 const PORT = process.env.PORT || 5000;
+
+// Routes
+app.use('/book', bookRouter);
 
 /** Listen * */
 app.listen(PORT, () => {

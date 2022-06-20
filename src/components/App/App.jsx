@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  Link
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +22,11 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+
+import BookList from '../booklistItem/booklistItem';
+import AddBook from '../bookForm/bookform';
+import DisplayBooks from '../../details/details';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -108,6 +114,15 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+          <Route>
+            <BookList />
+          </Route>
+          <Route>
+            <AddBook />
+          </Route>
+          <Route>
+            <DisplayBooks />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
