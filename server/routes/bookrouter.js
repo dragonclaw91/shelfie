@@ -7,35 +7,39 @@ const axios = require('axios');
 
 
 
-// Return back an array of all the fruit
-router.get('/', (req, res) => {
-  
-    const query = `SELECT * FROM book ORDER BY "author" ASC`;
-    pool.query(query)
-      .then( result => {
-        res.send(result.rows);
-      })
-      .catch(err => {
-        console.log('ERROR: Get all books', err);
-        res.sendStatus(500)
-      })
-});
+
+
 
 router.post('/', (req, res) => {
     const search = req.body.search
+    let newTitle = ""
+    let newAuthor = ""
+    let newSummary = ""
+    let newImage = ""
+
     console.log(req.body)
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${search}&key=AIzaSyCI2O7pgebs5ESibrx5ciJa9uxb9DTDbtI`).
         then((response) => {
             console.log('this is', response.data.items)
+            console.log(req.body.id)
+            id = req.body.id
             for(let i = 0; i < response.data.items.length;i++){
                 console.log("this is in the loop",response.data.items[i])
                 console.log("this should be the title",response.data.items[i].volumeInfo.title)
+                 newTitle = response.data.items[i].volumeInfo.title
                 console.log("this should be the summary",response.data.items[i].volumeInfo.description)
+                 newSummary = response.data.items[i].volumeInfo.description
                 console.log("this should be the image_url",response.data.items[i].volumeInfo.imageLinks.thumbnail)
+                 newImage = response.data.items[i].volumeInfo.imageLinks.thumbnail
                 for(let j = 0; j<response.data.items[i].volumeInfo.authors.length;j++){
                     console.log("should be author",response.data.items[i].volumeInfo.authors[j])
+                  newAuthor = response.data.items[i].volumeInfo.authors[j]
                 }
             }
+            console.log(newAuthor)
+                const queryText = `INSERT INTO "book" ("user_id","title","author","summary","image_url") VALUES ($1,$2,$3,$4,$5);`
+            pool.query(queryText, [id,newTitle,newAuthor,newSummary,newImage])
+            
             res.send(response.data);
         }).catch(error => {
             console.log('ERROR in GET books', error);

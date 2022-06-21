@@ -14,11 +14,17 @@ function AddBook(){
     const [isbn,setIsbn] = useState('')
 
     const history = useHistory()
+    const user = useSelector(store => store.user);
+    console.log(user.id)
+
+
 
     const findBook = (event) => {
         event.preventDefault();
-        dispatch({ type: 'FETCH_BOOK', payload: { search: Number(isbn) } })
+        dispatch({ type: 'FETCH_BOOK', payload: { search: Number(isbn), id: user.id } })
     }
+
+
 
 
     return(
