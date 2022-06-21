@@ -4,7 +4,6 @@ import {
   Redirect,
   Route,
   Switch,
-  Link
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,6 +41,9 @@ function App() {
       <div>
         <Nav />
         <Switch>
+        <Route>
+            <AddBook path="/add" />
+          </Route>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
@@ -116,13 +118,10 @@ function App() {
             }
           </Route>
           <Route>
-            <BookList />
+            <BookList path="/collection" />
           </Route>
           <Route>
-            <AddBook />
-          </Route>
-          <Route>
-            <DisplayBooks />
+            <DisplayBooks path="/details" />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

@@ -15,14 +15,14 @@ function BookList() {
   return (
     <section>
       <h2>CURRENT BOOKLIST</h2>
-      Current Book: {currentBook.title ? currentBook.title : 'None Selected'}
-      <ul>
+      {/* Current Book: {currentBook.title ? currentBook.title : 'None Selected'} */}
+      {/* <ul>
         {bookList.map((book, index) =>
           <li key={index}>{book.author}
           <img>image to be added later</img>
           </li>
         )}
-      </ul>
+      </ul> */}
     </section>
   );
 }

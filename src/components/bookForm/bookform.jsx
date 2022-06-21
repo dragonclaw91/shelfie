@@ -11,25 +11,30 @@ function AddBook(){
     const [bookCover, setBookCover] = useState('')
     const [summary, setSummary] = useState('')
     const [author, setAuthor] = useState('');
+    const [isbn,setIsbn] = useState('')
 
     const history = useHistory()
 
-
+    const findBook = (event) => {
+        event.preventDefault();
+        dispatch({ type: 'FETCH_BOOK', payload: { search: Number(isbn) } })
+    }
 
 
     return(
         <>
         <h1>welcome user</h1>
         <h1>find book</h1>
-        <input>ISBN: </input>
+        <form onSubmit={findBook} >
+        <input value={isbn} onChange={() => setIsbn(event.target.value)} placeholder='search'  ></input>
         <button>submit</button>
-
+        </form>
         <h4>add manually</h4>
 
-        <input>title</input>
-        <input>author</input>
-        <input>image url</input>
-        <input>summary</input>
+        <input></input>
+        <input></input>
+        <input></input>
+        <input></input>
         </>
     )
 }
