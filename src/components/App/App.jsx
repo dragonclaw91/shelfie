@@ -41,8 +41,9 @@ function App() {
       <div>
         <Nav />
         <Switch>
-        <Route>
-            <AddBook path="/add" />
+
+          <Route>
+            <BookList path="/collection" />
           </Route>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -118,8 +119,9 @@ function App() {
             }
           </Route>
           <Route>
-            <BookList path="/collection" />
+            <AddBook path="/add" />
           </Route>
+
           <Route>
             <DisplayBooks path="/details" />
           </Route>

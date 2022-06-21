@@ -3,26 +3,26 @@ import { useHistory } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
 function BookList() {
-  const bookList = useSelector(store => store.bookList);
+  const collection = useSelector(store => store.collectionReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_BOOK' });
+    dispatch({ type: 'FETCH_COLLECTION' });
 }, []);
 
+console.log(collection)
 
   return (
     <section>
       <h2>CURRENT BOOKLIST</h2>
-      {/* Current Book: {currentBook.title ? currentBook.title : 'None Selected'} */}
-      {/* <ul>
-        {bookList.map((book, index) =>
+       <ul>
+        {collection.map((book, index) =>
           <li key={index}>{book.author}
-          <img>image to be added later</img>
+          <img src={book.image_url} />
           </li>
         )}
-      </ul> */}
+      </ul> 
     </section>
   );
 }

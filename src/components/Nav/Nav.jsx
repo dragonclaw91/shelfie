@@ -41,7 +41,7 @@ function Nav() {
         </Link>
 
         <Link className="navLink" to="/collection">
-          add book
+          view collection
         </Link>
       </div>
     </div>

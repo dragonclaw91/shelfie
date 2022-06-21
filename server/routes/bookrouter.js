@@ -4,7 +4,19 @@ const pool = require('../modules/pool')
 const axios = require('axios');
 
 
+router.get('/', (req, res) => {
 
+    const query = `SELECT * FROM book ORDER BY "author" ASC`;
+    pool.query(query)
+      .then( result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('ERROR: Get all movies', err);
+        res.sendStatus(500)
+      })
+  
+  });
 
 
 
