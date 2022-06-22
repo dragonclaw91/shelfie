@@ -42,9 +42,6 @@ function App() {
         <Nav />
         <Switch>
 
-          <Route>
-            <BookList path="/collection" />
-          </Route>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
@@ -118,13 +115,23 @@ function App() {
               <LandingPage />
             }
           </Route>
-          <Route>
-            <AddBook path="/add" />
-          </Route>
+          <ProtectedRoute path="/add">
+            
+              <AddBook  />
+            
+          </ProtectedRoute>
 
-          <Route>
-            <DisplayBooks path="/details" />
-          </Route>
+          <ProtectedRoute path="/details/:bookId">
+            
+              <DisplayBooks  />
+            
+          </ProtectedRoute>
+          <ProtectedRoute path="/collection">
+            
+              <BookList  />
+            
+          </ProtectedRoute>
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

@@ -2,16 +2,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
+
 function BookList() {
   const collection = useSelector(store => store.collectionReducer);
   const dispatch = useDispatch();
   const history = useHistory();
+ 
 
   useEffect(() => {
     dispatch({ type: 'FETCH_COLLECTION' });
 }, []);
 
-console.log(collection)
+
+
+function viewBook(book){
+  history.push(`/details/${book.id}`)
+
+}
 
   return (
     <section>
@@ -19,7 +26,7 @@ console.log(collection)
        <ul>
         {collection.map((book, index) =>
           <li key={index}>{book.author}
-          <img src={book.image_url} />
+          <img src={book.image_url} onClick={() => viewBook(book)} />
           </li>
         )}
       </ul> 

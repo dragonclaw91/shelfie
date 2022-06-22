@@ -59,4 +59,25 @@ router.post('/', (req, res) => {
         }); 
 })
 
+
+router.put('/', (req, res) => {
+    console.log(req.body)
+    const updatedRating = req.body;
+  
+    const queryText = `UPDATE "book"
+    SET "rating" = $1` 
+;
+  
+    const queryValues = [
+      updatedRating.rating,
+    ];
+  
+    pool.query(queryText, queryValues)
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error completing UPDATE book query', err);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;
