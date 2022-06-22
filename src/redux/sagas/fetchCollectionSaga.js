@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 
-function* fetchCollection() {
+function* collection() {
     // get all books from the DB
     try {
         const collection = yield axios.get('/book');
@@ -15,5 +15,10 @@ function* fetchCollection() {
         
 }
 
+
+function* fetchCollection(){
+    yield takeEvery('FETCH_COLLECTION',collection );
+
+}
 
 export default fetchCollection

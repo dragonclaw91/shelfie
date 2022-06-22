@@ -6,9 +6,8 @@ function* addRating(action) {
     // add a rating to a book
     try {
         console.log(action.payload)
-        const rating = yield axios.put('/book',action.payload);
+         yield axios.put('/book',action.payload);
         console.log('get all of collection:', action.payload);
-        yield put({ type: 'SET_RATING', payload: action.payload });
 
     } catch {
         console.log('ratings error');

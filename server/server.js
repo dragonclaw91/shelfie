@@ -21,7 +21,7 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 const bookRouter = require('./routes/bookrouter.js');
-
+const manualEntryRouter = require('./routes/manualEntryroute.js');
 /* Routes */
 app.use('/api/user', userRouter);
 
@@ -33,6 +33,7 @@ const PORT = process.env.PORT || 5000;
 
 // Routes
 app.use('/book', bookRouter);
+app.use('/manual', manualEntryRouter);
 
 /** Listen * */
 app.listen(PORT, () => {

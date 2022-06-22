@@ -21,6 +21,10 @@ function rateBook(rating){
  console.log(rating)
 }
 
+function deleteBook(book){
+    dispatch({type: 'DELETE_BOOK', payload: book.id})
+    history.push("/collection")
+}
 
 if (!book) return <h2>Invalid Book Id</h2>
 
@@ -35,7 +39,7 @@ return(
     <img src={book.image_url} />
     <h3> Summary: </h3><br />
     <p> {book.summary}</p>
-    <button>delete</button>
+    <button onClick={() => deleteBook(book)} >delete</button>
     <input type = "radio"  onClick={() => rateBook(1)} ></input>
     <input type = "radio"  onClick={() => rateBook(2)}  ></input>
     <input type = "radio"  onClick={() => rateBook(3)}  ></input>
