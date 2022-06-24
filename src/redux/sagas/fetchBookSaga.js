@@ -9,9 +9,10 @@ function* fetchBooks(action) {
         console.log('get all:', response.data);
 
 
-        yield put({ type: 'SET_BOOK', payload: response.data });
+        yield put({ type: 'FETCH_COLLECTION'});
     } catch (err) {
         console.error(`Error GETTING books`, err);
+        alert("plase add manually",err)
     }
   }
 

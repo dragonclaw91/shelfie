@@ -5,7 +5,8 @@ import { put, takeEvery } from 'redux-saga/effects';
 function* collection() {
     // get all books from the DB
     try {
-        const collection = yield axios.get('/book');
+        
+        const collection = yield axios.get(`/book`);
         console.log('get all of collection:', collection.data);
         yield put({ type: 'SET_COLLECTION', payload: collection.data });
 

@@ -6,13 +6,16 @@ const axios = require('axios');
 
 router.get('/', (req, res) => {
 
-    const query = `SELECT * FROM book ORDER BY "author" ASC`;
-    pool.query(query)
+    const query = `SELECT * FROM book
+    JOIN "user" ON "book".user_id="user".id
+    WHERE "user".id=$1
+    ORDER BY "author" ASC`;
+    pool.query(query,[req.user.id])
       .then( result => {
         res.send(result.rows);
       })
       .catch(err => {
-        console.log('ERROR: Get all movies', err);
+        console.log('ERROR: Get all books', err);
         res.sendStatus(500)
       })
   
@@ -29,25 +32,50 @@ router.post('/', (req, res) => {
     let newSummary = ""
     let newImage = ""
 
-    console.log(req.body)
+    console.log( req.body)
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${search}&key=AIzaSyCI2O7pgebs5ESibrx5ciJa9uxb9DTDbtI`).
         then((response) => {
-            console.log('this is', response.data.items)
-            console.log(req.body.id)
-            id = req.body.id
-            for(let i = 0; i < response.data.items.length;i++){
-                console.log("this is in the loop",response.data.items[i])
-                console.log("this should be the title",response.data.items[i].volumeInfo.title)
-                 newTitle = response.data.items[i].volumeInfo.title
-                console.log("this should be the summary",response.data.items[i].volumeInfo.description)
-                 newSummary = response.data.items[i].volumeInfo.description
-                console.log("this should be the image_url",response.data.items[i].volumeInfo.imageLinks.thumbnail)
-                 newImage = response.data.items[i].volumeInfo.imageLinks.thumbnail
-                for(let j = 0; j<response.data.items[i].volumeInfo.authors.length;j++){
-                    console.log("should be author",response.data.items[i].volumeInfo.authors[j])
-                  newAuthor = response.data.items[i].volumeInfo.authors[j]
-                }
+            if(response.data.totalItems === 0){
+                
             }
+            console.log('this is what i want to know', response.data.items[response.data.totalItems - 1].volumeInfo.publishedDate)
+            let book = response.data.items
+            console.log(req.body.id)
+            console.log("this is the new book",book)
+            id = req.body.id
+
+      
+
+            for(let i = 0; i < book.length - 1; i++){
+            console.log( "THESE ARE THE IMAGES", book[i].volumeInfo.imageLinks.thumbnail)
+            if(book[i].volumeInfo.imageLinks.thumbnail !== undefined){
+                newImage= book[i].volumeInfo.imageLinks.thumbnail
+            }else{
+                newImage = null
+            }
+            }
+            
+            if(response.data.items[0].volumeInfo.publishedDate > response.data.items[response.data.totalItems - 1].volumeInfo.publishedDate){
+                book = response.data.items[0].volumeInfo
+            }else{
+                book = response.data.items[response.data.totalItems - 1].volumeInfo
+            }
+              
+
+                console.log("this should be the title",book.title)
+                 newTitle = book.title
+                console.log("this should be the summary",book.description)
+                 newSummary = book.description
+                //  if(!book.imageLinks){
+                //     newImage=null
+                //  }else{
+                // console.log("this should be the image_url",book.imageLinks.thumbnail)
+                //  newImage = book.imageLinks.thumbnail}
+                for(let j = 0; j<book.authors.length;j++){
+                    console.log("should be author",book.authors[j])
+                  newAuthor = book.authors[j]}
+                
+            
             console.log(newAuthor)
                 const queryText = `INSERT INTO "book" ("user_id","title","author","summary","image_url") VALUES ($1,$2,$3,$4,$5);`
             pool.query(queryText, [id,newTitle,newAuthor,newSummary,newImage])
@@ -61,14 +89,16 @@ router.post('/', (req, res) => {
 
 
 router.put('/', (req, res) => {
+    console.log(req.body.id)
     const updatedRating = req.body;
   
     const queryText = `UPDATE "book"
-    SET "rating" = $1` 
+    SET "rating" = $1 WHERE id=$2` 
 ;
   
     const queryValues = [
       updatedRating.rating,
+      updatedRating.id
     ];
   
     pool.query(queryText, queryValues)
@@ -84,11 +114,11 @@ router.put('/', (req, res) => {
 
   router.delete('/:id', (req, res) => {
     console.log(req.params.id)
-    const queryText = 'DELETE FROM book WHERE id=$1';
+    const queryText = 'DELETE FROM book WHERE "ID"=$1';
     pool.query(queryText, [req.params.id])
       .then(() => { res.sendStatus(200); })
       .catch((err) => {
-        console.log('Error completing DELETE PLANT query', err);
+        console.log('Error completing DELETE BOOK query', err);
         res.sendStatus(500);
       });
   });

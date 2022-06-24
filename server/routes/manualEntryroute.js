@@ -16,5 +16,29 @@ router.post('/', (req, res) => {
 })
 
 
+router.put('/', (req, res) => {
+    console.log("this is the new image",req.body)
+    console.log(req.body.id)
+    const updatedImage = req.body;
+  
+    const queryText = `UPDATE "book"
+    SET "image_url" = $1 WHERE "ID"=$2` 
+;
+  
+    const queryValues = [
+      updatedImage.image,
+      updatedImage.id
+    ];
+  
+    pool.query(queryText, queryValues)
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error completing UPDATE book query', err);
+        res.sendStatus(500);
+      });
+  });
+
+
+
 
 module.exports = router;

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
+
 function AddBook() {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('')
@@ -18,12 +19,18 @@ function AddBook() {
 
 
 
+console.log(user)
+
 
     const findBook = (event) => {
         event.preventDefault();
         dispatch({ type: 'FETCH_BOOK', payload: { search: Number(isbn), id: user.id } })
-        history.push("/collection")
+        history.push(`/collection`)
     }
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_COLLECTION' });
+    }, []);
 
     function addManually() {
         dispatch({
@@ -42,11 +49,12 @@ function AddBook() {
 
     return (
         <>
+        
             <h1>welcome user</h1>
             <h1>find book</h1>
-            <form onSubmit={findBook} >
+            <form>
                 <input value={isbn} onChange={() => setIsbn(event.target.value)} placeholder='search'  ></input>
-                <button>find book</button>
+                <button onClick={findBook} >find book</button>
             </form>
             <h4>add manually</h4>
 

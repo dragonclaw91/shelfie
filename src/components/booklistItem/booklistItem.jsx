@@ -7,7 +7,8 @@ function BookList() {
   const collection = useSelector(store => store.collectionReducer);
   const dispatch = useDispatch();
   const history = useHistory();
- 
+
+console.log(collection)
 
   useEffect(() => {
     dispatch({ type: 'FETCH_COLLECTION' });
@@ -16,7 +17,8 @@ function BookList() {
 
 
 function viewBook(book){
-  history.push(`/details/${book.id}`)
+  console.log(book)
+  history.push(`/details/${book}`)
 
 }
 
@@ -26,7 +28,7 @@ function viewBook(book){
        <ul>
         {collection.map((book, index) =>
           <li key={index}>{book.author}
-          <img src={book.image_url} onClick={() => viewBook(book)} />
+          <img src={book.image_url} alt={book.title} onClick={() => viewBook(book.ID)} />
           </li>
         )}
       </ul> 

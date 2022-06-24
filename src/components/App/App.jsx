@@ -36,6 +36,7 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  console.log(user.id)
   return (
     <Router>
       <div>
@@ -126,7 +127,7 @@ function App() {
               <DisplayBooks  />
             
           </ProtectedRoute>
-          <ProtectedRoute path="/collection">
+          <ProtectedRoute path="/collection" >
             
               <BookList  />
             
