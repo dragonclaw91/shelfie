@@ -35,42 +35,51 @@ router.post('/', (req, res) => {
     console.log( req.body)
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${search}&key=AIzaSyCI2O7pgebs5ESibrx5ciJa9uxb9DTDbtI`).
         then((response) => {
-            if(response.data.totalItems === 0){
-                
+        
+            let endPoint = 1
+
+            if(req.body.totalItems >= 2){
+                endPoint = req.body.totalItems
             }
-            console.log('this is what i want to know', response.data.items[response.data.totalItems - 1].volumeInfo.publishedDate)
+
             let book = response.data.items
             console.log(req.body.id)
             console.log("this is the new book",book)
             id = req.body.id
 
-      
+            console.log(response.data.totalItems)
+            console.log(endPoint)
+console.log("THIS SHOULD BE A NUMBER", response.data.totalItems - endPoint)
+      console.log(response.data.items[response.data.totalItems - endPoint].volumeInfo.publishedDate)
+      console.log(response.data.items[0].volumeInfo.publishedDate)
 
-            for(let i = 0; i < book.length - 1; i++){
+
+      
+      for(let i = 0; i < book.length; i++){
+        console.log("IN THE LOOP" ,book[i].volumeInfo.imageLinks)
+        if(book[i].volumeInfo.imageLinks !== undefined){
+            newImage= book[i].volumeInfo.imageLinks.thumbnail
             console.log( "THESE ARE THE IMAGES", book[i].volumeInfo.imageLinks.thumbnail)
-            if(book[i].volumeInfo.imageLinks.thumbnail !== undefined){
-                newImage= book[i].volumeInfo.imageLinks.thumbnail
-            }else{
-                newImage = null
-            }
-            }
-            
-            if(response.data.items[0].volumeInfo.publishedDate > response.data.items[response.data.totalItems - 1].volumeInfo.publishedDate){
-                book = response.data.items[0].volumeInfo
-            }else{
-                book = response.data.items[response.data.totalItems - 1].volumeInfo
-            }
+          break;
+      }else{
+          newImage = null
+      }
+      }
+      
+      if(response.data.items[0].volumeInfo.publishedDate > response.data.items[response.data.totalItems - endPoint].volumeInfo.publishedDate){
+          book = response.data.items[0].volumeInfo
+        }else{
+            book = response.data.items[response.data.totalItems - endPoint].volumeInfo
+        }
+
+        
               
 
                 console.log("this should be the title",book.title)
                  newTitle = book.title
                 console.log("this should be the summary",book.description)
                  newSummary = book.description
-                //  if(!book.imageLinks){
-                //     newImage=null
-                //  }else{
-                // console.log("this should be the image_url",book.imageLinks.thumbnail)
-                //  newImage = book.imageLinks.thumbnail}
+       
                 for(let j = 0; j<book.authors.length;j++){
                     console.log("should be author",book.authors[j])
                   newAuthor = book.authors[j]}

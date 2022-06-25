@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import React, { useEffect } from 'react';
+import { CardGroup, Card, CardBody, CardImg, CardTitle } from 'reactstrap';
+import "./booklistItem.css"
+
 
 
 function BookList() {
@@ -23,15 +26,21 @@ function viewBook(book){
 }
 
   return (
-    <section>
+    <section className='container'>
       <h2>CURRENT BOOKLIST</h2>
-       <ul>
         {collection.map((book, index) =>
-          <li key={index}>{book.author}
-          <img src={book.image_url} alt={book.title} onClick={() => viewBook(book.ID)} />
-          </li>
+        <CardGroup class = "row" >
+          <Card  key={index} onClick={() => viewBook(book.ID)}>
+          <><CardBody>
+                  <CardTitle>
+                    {book.author}
+                  </CardTitle>
+                </CardBody>
+                <CardImg src={book.image_url} alt={book.title} top width="100%"  /></>
+          </Card>
+        </CardGroup>
+        
         )}
-      </ul> 
     </section>
   );
 }
