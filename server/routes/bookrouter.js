@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
     let newImage = ""
 
     console.log( req.body)
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${search}&key=AIzaSyCI2O7pgebs5ESibrx5ciJa9uxb9DTDbtI`).
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${search}`).
         then((response) => {
         
             let endPoint = 1
