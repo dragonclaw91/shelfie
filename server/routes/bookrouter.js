@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     const query = `SELECT * FROM book
     JOIN "user" ON "book".user_id="user".id
     WHERE "user".id=$1
-    ORDER BY "author" ASC`;
+    ORDER BY "ID" DESC`;
     pool.query(query,[req.user.id])
       .then( result => {
         res.send(result.rows);

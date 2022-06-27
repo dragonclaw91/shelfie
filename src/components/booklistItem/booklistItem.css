@@ -1,6 +1,27 @@
 
+.books {
+    display: inline-flex;
+    background-color: blue;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+   max-width: none !important;
+   align-items: flex-start;
+   width: 1152px;
+}
 
 
-
+.card{
+    width: 275px;
+    height:210;
+ margin-top: 30px;
+ margin-bottom: 30px;
+ margin-left: 30px;
+ margin-right: 30px;
+ border-radius: 10px;
+}
+div.card-title{
+    height: 25px;;
+}
 
 
