@@ -102,7 +102,7 @@ router.put('/', (req, res) => {
     const updatedRating = req.body;
   
     const queryText = `UPDATE "book"
-    SET "rating" = $1 WHERE id=$2` 
+    SET "rating" = $1 WHERE "ID"=$2` 
 ;
   
     const queryValues = [

@@ -2,9 +2,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { useState,useEffect } from 'react';
+import { Rating } from 'react-simple-star-rating'
 
 
 
@@ -12,13 +11,19 @@ function DisplayBooks() {
 
 const history = useHistory()
     const [image, setImage] = useState("")
+    const [rating, setRating] = useState(0)
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_COLLECTION' });
+    }, []);
     let bookList = useSelector(store => store.collectionReducer);
 
 
+
     let params = useParams();
-    console.log(params);
+    console.log('gdasagdsa',bookList);
 
     let bookId = params.bookId;
     let book = bookList.find(book => book.ID === Number(bookId));
@@ -26,9 +31,12 @@ const history = useHistory()
     console.log(book)
 
     function rateBook(rating) {
-        dispatch({ type: 'RATINGS', payload: { rating: rating, id: book.ID } })
+       
+        dispatch({ type: 'RATINGS', payload: { rating: rating/20, id: book.ID } })
         console.log(rating)
     }
+
+
 
     function deleteBook(book) {
         dispatch({ type: 'DELETE_BOOK', payload: book.ID })
@@ -55,11 +63,9 @@ const history = useHistory()
             <h3> Summary: </h3><br />
             <p> {book.summary}</p>
             <button onClick={() => deleteBook(book)} >delete</button>
-            <input type="radio" className='rate' onClick={() => rateBook(1)} ></input>
-            <input type="radio" className='rate' onClick={() => rateBook(2)}  ></input>
-            <input type="radio" className='rate' onClick={() => rateBook(3)}  ></input>
-            <input type="radio" className='rate' onClick={() => rateBook(4)}  ></input>
-            <input type="radio" className='rate' onClick={() => rateBook(5)}  ></input>
+            <Rating     onClick={rateBook}
+  ratingValue={rating}
+  fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']} />
         </>
     )
 }

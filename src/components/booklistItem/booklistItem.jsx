@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { CardGroup, Card, CardBody, CardImg, CardTitle, Row, Carousel,  } from 'reactstrap';
+import { CardGroup, Card, CardImg,  Row, Container } from 'reactstrap';
 import "./booklistItem.css"
 
 
@@ -28,16 +28,11 @@ function viewBook(book){
   return (
     <main className='books' >
     <section className="cards">
+    
       <CardGroup>
         {collection.map((book, index) =>
-       
-       
           <Row md="2" >
-          <Card style={{padding:0}} className='cardz'  key={index} onClick={() => viewBook(book.ID)}>
-                
-          <>
-          
-                </>
+          <Card style={{padding:0}} className='cardz'  key={index} onClick={() => viewBook(book.ID)}>    
                 <CardImg src={book.image_url} alt={book.title} top width="100%" />
           </Card>
               </Row>
