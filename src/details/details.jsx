@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 
 
@@ -53,11 +55,11 @@ const history = useHistory()
             <h3> Summary: </h3><br />
             <p> {book.summary}</p>
             <button onClick={() => deleteBook(book)} >delete</button>
-            <input type="radio" onClick={() => rateBook(1)} ></input>
-            <input type="radio" onClick={() => rateBook(2)}  ></input>
-            <input type="radio" onClick={() => rateBook(3)}  ></input>
-            <input type="radio" onClick={() => rateBook(4)}  ></input>
-            <input type="radio" onClick={() => rateBook(5)}  ></input>
+            <input type="radio" className='rate' onClick={() => rateBook(1)} ></input>
+            <input type="radio" className='rate' onClick={() => rateBook(2)}  ></input>
+            <input type="radio" className='rate' onClick={() => rateBook(3)}  ></input>
+            <input type="radio" className='rate' onClick={() => rateBook(4)}  ></input>
+            <input type="radio" className='rate' onClick={() => rateBook(5)}  ></input>
         </>
     )
 }
