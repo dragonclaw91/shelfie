@@ -1,0 +1,49 @@
+.details{
+    background-image: url("https://images.unsplash.com/photo-1513185041617-8ab03f83d6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3540&q=80");
+    color: rgb(255, 255, 255);
+background-size: cover;
+}
+
+.summary{
+    width: 800px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+   padding-bottom: 50px;
+}
+
+h2{
+    text-align: center;
+}
+
+.viewImage{
+    height: 250px;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 550px;
+}
+
+h3{
+    padding-right: 50px;
+}
+
+.addImage{
+    text-align: center;
+    padding-top: 5px;
+}
+
+.rating{
+  position: absolute;
+padding-left: 202px;
+padding-top: 15px;
+}
+
+.delete{
+    margin-left: 254px;
+}
+
+.add{
+    height:33px
+
+}

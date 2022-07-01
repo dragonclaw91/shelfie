@@ -78,3 +78,28 @@ Grid
   flex-basis: 100%;
   max-width: 100%;
 }
+
+.landing{
+  background-image: url("https://images.unsplash.com/photo-1488155665162-7fc8d8093d18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80");
+  background-size: cover;
+height: 650px;
+}
+
+.loginHeader{
+  color: white;
+}
+
+p{
+  color: white;
+}
+
+h4{
+  color: white;
+}
+
+
+.loginForm{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
