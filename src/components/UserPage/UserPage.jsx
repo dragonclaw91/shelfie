@@ -9,8 +9,8 @@ function UserPage() {
   return (
     <div className='userPage' >
     <div className="container">
+      <div className='wrapper' >
       <h1 className='welcome' >Welcome, {user.username}!</h1>
-      <p>Your ID is: {user.id}</p>
       <h3>USER INSTRUCTIONS:</h3>
       <p>click the add book link at the top right of your screen then, to add a book type in the International Standard Book Number,
          which can be found on the back of your book into the search field 
@@ -22,8 +22,9 @@ function UserPage() {
             to view the details of the book's summary simply click the book you wish to view.
             Once the book is being viewed you can click the stars beneath the book to rate a peticular book.
             if the book has no image one may be added to it by typing a image url into the search field.
-            Deleteeing a book is as simple as hitting the delete button.</p>
-      <LogOutButton className="btn" />
+            Deleteing a book is as simple as hitting the delete button.</p>
+      
+    </div>
     </div>
     </div>
   );

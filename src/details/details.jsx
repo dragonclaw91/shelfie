@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Rating } from 'react-simple-star-rating'
 import "./details.css"
-import { Button,Input } from 'reactstrap'
+import { Button, Input, Col, Row, Container } from 'reactstrap'
 
 
 
@@ -30,12 +30,13 @@ function DisplayBooks() {
     let bookId = params.bookId;
     let book = bookList.find(book => book.ID === Number(bookId));
 
-    console.log(book)
+    console.log("this is the book", book)
 
     function rateBook(rating) {
 
         dispatch({ type: 'RATINGS', payload: { rating: rating / 20, id: book.ID } })
         console.log(rating)
+        setRating(rating)
     }
 
 
@@ -57,30 +58,49 @@ function DisplayBooks() {
     return (
         <div className='details' >
             <>
-            <br/>
-            <div className="details_header" >
-                <h2>{book.title}</h2>
+                <br />
+                <div className="details_header" >
+                    <h2>{book.title}</h2>
+                    {/* <h1>{book.rating}</h1> */}
                 </div>
-                <br/>
+                <br />
                 <div className='addImage' >
-                <div className='rating' >
-                <Rating onClick={rateBook}
-                    ratingValue={rating}
-                    fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']} />
-                    </div>
-                <Input  value={image} onChange={() => setImage(event.target.value)} placeholder="add image url" ></Input>
-                
-                <Button className="add" color='success' onClick={addImage}>add image</Button>
+                    <Row>
+                        <Col sm={2}></Col>
+                        <Col sm={6}>
+                            <Input value={image} onChange={() => setImage(event.target.value)} placeholder="add image url" />
+                        </Col>
+                        <Col sm={2}>
+                            <Button className="add" color='success' onClick={addImage}>add image</Button>
+                        </Col>
+                    </Row>
                 </div>
-                <br/>
-                <img className='viewImage' src={book.image_url} alt={book.title} />
-                <Button class="btn-lg" color='danger' className='delete' onClick={() => deleteBook(book)} >delete</Button>
-                    <div className='summary'>
-                <h3> Summary: </h3><br />
-                <p> {book.summary}</p>
+                <Row className="rating mt-sm-3">
+                    <Col sm={2}></Col>
+                    <Col>
+                        <Rating onClick={rateBook}
+                            ratingValue={rating}
+                            fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                            initialValue={book.rating} />
+                    </Col>
+                </Row>
+                <br />
+                <Row>
+                    <Col>
+                        <img className='viewImage' src={book.image_url} alt={book.title} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={2} >
+                        <Button class="btn-lg" color='danger' className='delete' onClick={() => deleteBook(book)} >delete</Button>
+                    </Col>
+                </Row>
+                <div className='summary'>
+                    <h3> Summary: </h3><br />
+                    <p> {book.summary}</p>
                 </div>
             </>
-        </div>
+        </div >
     )
 }
 

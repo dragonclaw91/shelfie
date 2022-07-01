@@ -30,20 +30,15 @@ h3{
 
 .addImage{
     text-align: center;
-    padding-top: 5px;
+    padding-top: 20px;
 }
 
 .rating{
-  position: absolute;
-padding-left: 202px;
-padding-top: 15px;
+    margin-top: 10px;
 }
 
 .delete{
     margin-left: 254px;
-}
-
-.add{
-    height:33px
-
+    margin-top: 20px;
+    width: 100px;
 }

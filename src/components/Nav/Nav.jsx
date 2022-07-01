@@ -28,9 +28,7 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
+        
 
             <LogOutButton className="navLink" />
           </>
@@ -41,10 +39,10 @@ function Nav() {
         </Link>
 
         <Link className="navLink" to="/collection">
-          view collection
+          View Collection
         </Link>
         <Link className="navLink" to="/add">
-          add Book
+          Add Book
         </Link>
       </div>
     </div>

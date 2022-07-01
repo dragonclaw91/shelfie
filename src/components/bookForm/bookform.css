@@ -10,4 +10,14 @@
 }
 
 
+.wrapper{
+    background-color:rgba(0, 0, 0, 0.587);
+    border-radius: 5%;
+    padding: 2em;
+}
+
+.wrapper Button{
+    margin-top: .5em;
+}
+
 

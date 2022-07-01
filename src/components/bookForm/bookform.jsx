@@ -52,7 +52,7 @@ function AddBook() {
     return (
         <div className='form' >
             <Container >
-                <>
+                <div className='wrapper'>
                     <div className='header' >
                         <h1>find book</h1>
                     </div>
@@ -92,7 +92,7 @@ function AddBook() {
                             </Col>
                         </Row>
                     </Form>
-                </>
+                </div>
             </Container>
         </div>
     )
