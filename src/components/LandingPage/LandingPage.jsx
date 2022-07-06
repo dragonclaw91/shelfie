@@ -17,6 +17,7 @@ function LandingPage() {
   return (
     <div className='landing' >
     <div className="container">
+          <div className='wrapper'>
       <h2 className='loginHeader' >{heading}</h2>
 
       <div className="grid">
@@ -27,6 +28,7 @@ function LandingPage() {
            Using Shelfie is fun and easy, allowing you to quickly find any book
                to add to your personal library.
           </p>
+          </div>
 
          
         </div>

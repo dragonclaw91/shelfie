@@ -1,5 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
+import swal from 'sweetalert';
+
 
 function* fetchBooks(action) {
     try {
@@ -10,9 +12,10 @@ function* fetchBooks(action) {
 
 
         yield put({ type: 'FETCH_COLLECTION'});
+       
     } catch (err) {
         console.error(`Error GETTING books`, err);
-        alert("plase add manually",err)
+        swal("Please Add Manually","error")
     }
   }
 

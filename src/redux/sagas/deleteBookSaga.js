@@ -4,8 +4,10 @@ import axios from 'axios';
 
 
 
+//sending the book to be deleted to the router
 function* deleteItem(action){
     try{
+        console.log("TESTING",action.payload)
      yield axios.delete(`/book/${action.payload}`)
      yield put({ type: 'FETCH_COLLECTION' });
   }catch (error) {

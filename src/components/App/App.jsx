@@ -23,7 +23,7 @@ import './App.css';
 
 import BookList from '../booklistItem/booklistItem';
 import AddBook from '../bookForm/bookform';
-import DisplayBooks from '../../details/details';
+import DisplayBooks from '../details/details';
 
 
 function App() {
@@ -109,17 +109,19 @@ function App() {
               <LandingPage />
             }
           </Route>
+          {/* this is the page where users will add books */}
           <ProtectedRoute path="/add">
             
               <AddBook  />
             
           </ProtectedRoute>
-
+{/* this is where users can see the summary of a book and rate it */}
           <ProtectedRoute path="/details/:bookId">
             
               <DisplayBooks  />
             
           </ProtectedRoute>
+          {/* this is where users can see their entire collection */}
           <ProtectedRoute path="/collection" >
             
               <BookList  />

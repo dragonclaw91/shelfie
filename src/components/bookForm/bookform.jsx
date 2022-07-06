@@ -17,23 +17,25 @@ function AddBook() {
     const [isbn, setIsbn] = useState('')
 
     const history = useHistory()
+    // grabbign all info on user for upading only that users collection
     const user = useSelector(store => store.user);
 
 
 
     console.log(user)
 
-
+// seasrching googles api for a match by isbn number
     const findBook = (event) => {
         event.preventDefault();
         dispatch({ type: 'FETCH_BOOK', payload: { search: Number(isbn), id: user.id } })
         history.push(`/collection`)
     }
-
+// displaying the collection on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_COLLECTION' });
     }, []);
 
+    // if manual entry was required this sends the info to the backend
     function addManually() {
         dispatch({
             type: 'MANUAL_ENTRY', payload:
@@ -45,6 +47,7 @@ function AddBook() {
                 bookCover: bookCover
             }
         })
+        // pushes a user back to their collection
         history.push("/collection")
     }
 

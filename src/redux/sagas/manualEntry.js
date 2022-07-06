@@ -1,6 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+//adding a book manually 
 function* manualEntry(action) {
     try {
         const response = yield axios.post('/manual',action.payload);

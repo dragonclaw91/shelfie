@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../modules/pool')
 const axios = require('axios');
 
-
+// getting all books from data base ordered by author
 router.get('/', (req, res) => {
 
     const query = `SELECT * FROM book
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 
 
-
+//filtering results given by google books api
 router.post('/', (req, res) => {
     const search = req.body.search
     let newTitle = ""
@@ -84,7 +84,7 @@ console.log("THIS SHOULD BE A NUMBER", response.data.totalItems - endPoint)
                     console.log("should be author",book.authors[j])
                   newAuthor = book.authors[j]}
                 
-            
+            //inserting the filtered result into the data base
             console.log(newAuthor)
                 const queryText = `INSERT INTO "book" ("user_id","title","author","summary","image_url") VALUES ($1,$2,$3,$4,$5);`
             pool.query(queryText, [id,newTitle,newAuthor,newSummary,newImage])
@@ -96,7 +96,7 @@ console.log("THIS SHOULD BE A NUMBER", response.data.totalItems - endPoint)
         }); 
 })
 
-
+//updating the rating of a book
 router.put('/', (req, res) => {
     console.log(req.body.id)
     const updatedRating = req.body;
@@ -120,7 +120,7 @@ router.put('/', (req, res) => {
 
 
 
-
+// deleting a book
   router.delete('/:id', (req, res) => {
     console.log(req.params.id)
     const queryText = 'DELETE FROM book WHERE "ID"=$1';

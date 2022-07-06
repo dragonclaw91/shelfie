@@ -22,6 +22,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 const bookRouter = require('./routes/bookrouter.js');
 const manualEntryRouter = require('./routes/manualEntryroute.js');
+const titleRouter = require('./routes/titlerouter.js');
+const ratingRouter = require('./routes/ratingrouter.js');
 /* Routes */
 app.use('/api/user', userRouter);
 
@@ -34,7 +36,8 @@ const PORT = process.env.PORT || 5000;
 // Routes
 app.use('/book', bookRouter);
 app.use('/manual', manualEntryRouter);
-
+app.use("/title",titleRouter)
+app.use("/rating",ratingRouter)
 
 /** Listen * */
 app.listen(PORT, () => {

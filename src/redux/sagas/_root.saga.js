@@ -8,6 +8,8 @@ import ratingSaga from './ratingSaga';
 import deleteBook from './deleteBookSaga';
 import manualEntrySaga from './manualEntry';
 import addImageSaga from './addImageSaga';
+import orderCollectionTitle from './titleSaga';
+import fetchCollectionRating from './getRatingSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -26,6 +28,8 @@ export default function* rootSaga() {
     ratingSaga(),
     deleteBook(),
     manualEntrySaga(),
-    addImageSaga()
+    addImageSaga(),
+    orderCollectionTitle(),
+    fetchCollectionRating()
   ]);
 }

@@ -1,6 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+// sends image to router if image url was manually entered
 function* addImage(action) {
     try {
     console.log("in the saga", action.payload)
