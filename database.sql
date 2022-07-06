@@ -13,15 +13,14 @@ CREATE TABLE "user" (
 
 
 CREATE TABLE "book" (
-	"id" serial NOT NULL,
+	"ID" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"title" varchar(255) NOT NULL,
 	"author" varchar(255) NOT NULL,
 	"summary" varchar(9550),
 	"image_url" varchar(10000),
-	"user_password" varchar(255) NOT NULL UNIQUE,
-	"rating" integer NOT NULL,
-	CONSTRAINT "book_pk" PRIMARY KEY ("id")
+	"rating" integer,
+	CONSTRAINT "book_pk" PRIMARY KEY ("ID")
 ) WITH (
   OIDS=FALSE
 );
