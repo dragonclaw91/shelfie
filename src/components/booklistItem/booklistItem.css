@@ -1,7 +1,7 @@
 
 .books {
     display: flex;
-    background-image: url("/Users/davidbrown/emerging digital academy/tier 2/shelfie/public/empty_bookshelf.png");
+    background-image: url("../../../public/empty_bookshelf.png");
     flex-wrap: wrap;
     flex-direction: row;
     background-size: 1500px;
