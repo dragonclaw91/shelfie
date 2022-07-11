@@ -20,6 +20,7 @@ console.log(collection)
 }, []);
 
 
+
 // alowing user to clik a book and view its details
 function viewBook(book){
   console.log(book)
