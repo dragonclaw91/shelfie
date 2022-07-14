@@ -8,6 +8,7 @@
     justify-content: space-between;
    align-items: flex-start;
    min-height: 1500px;
+   zoom: 150%;
 }
 .cards{
     margin-left: 70px;
